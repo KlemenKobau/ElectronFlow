@@ -40,17 +40,12 @@ public class ElectronMain : MonoBehaviour {
 			}
 		}
 	}
-	/*
-	public void giveFirstTarget(Area target)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
-		this.target = target;
-		targetPosition = target.wires[0].transform.position;
+		if (other.tag.Equals("Empty Space"))
+		{
+			WireSistem.wireSistem.end();
+		}
 	}
-	*/
-	public void giveArea(Area target)
-	{
-
-	}
-		
 }
  
