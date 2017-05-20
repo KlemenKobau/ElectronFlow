@@ -4,32 +4,69 @@ using UnityEngine;
 
 public class WireSistem : MonoBehaviour {
 	public static WireSistem wireSistem;
-	private static List<GameObject> wires = new List<GameObject>();
+	public GameObject electron;
+	//areas
+	private int numberOfAreaTypes = 2;
+	public GameObject Area1;
+	public GameObject Area2;
+	
+	private int areaLimit = 5;
+
+	private const int offset = 10;
+	private Vector2 startingPosition = new Vector2(0, 0);
+
+	private int number = 0;
+	private static List<Area> areas = new List<Area>();
 
 	// Use this for initialization
 	void Awake () {
 		wireSistem = this;
+		areas.Add(new Area(null, null));
+		areas.Add(new Area(null, null));
+		createRandom();
+		createRandom();
+		createRandom();
 	}
 	private void Start()
 	{
-		StartCoroutine(giveFirstTarget());
+		StartCoroutine(startTheGame());
 	}
-	public void addWires(List<GameObject> area)
+	public void addArea(Area that)
 	{
-		foreach (GameObject wire in area)
-		{
-			wires.Add(wire);
-		}
+		areas.Add(that);
 	}
-	public GameObject getTarget()
+	public Area getTargetArea()
 	{
-		GameObject target = wires[0];
-		wires.RemoveAt(0);
+		Area target = areas[3];
+		Destroy(areas[0].areaObject);
+		areas.RemoveAt(0);
+		createRandom();
 		return target;
 	}
-	IEnumerator giveFirstTarget()
+	IEnumerator startTheGame()
 	{
 		yield return null;
-		ElectronMain.electron.giveFirstTarget(getTarget());
+		Instantiate(electron,startingPosition, new Quaternion(0,0,0,0));
+	}
+	private void createRandom()
+	{
+		int rand = Random.Range(1, numberOfAreaTypes+1);
+		GameObject newArea = null;
+
+		switch (rand)
+		{
+			case 1:
+				newArea = Area1;
+				break;
+			case 2:
+				newArea = Area2;
+				break;
+			default:
+				print("napaka v switchu WireSistema");
+				break;
+		}
+		Instantiate(newArea,new Vector2(number*offset,0),new Quaternion(0,0,0,0));
+		number += 1;
 	}
 }
+

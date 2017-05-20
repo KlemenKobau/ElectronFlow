@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GetAllWires : MonoBehaviour {
 	private List<GameObject> wires = new List<GameObject>();
+	public Area here = null;
 
 	// Use this for initialization
 	void Start() {
@@ -15,10 +16,23 @@ public class GetAllWires : MonoBehaviour {
 		{
 			wires.Add(child.gameObject);
 		}
-		WireSistem.wireSistem.addWires(wires);
+		here = new Area(gameObject,wires);
+		WireSistem.wireSistem.addArea(here);
 	}
-	public List<GameObject> getWires()
+	public Area getArea()
 	{
-		return wires;
+		return here;
+	}
+}
+public class Area
+{
+	public GameObject areaObject;
+	public List<GameObject> wires;
+	public int lokacija = 0;
+
+	public Area(GameObject areaObject,List<GameObject> wires)
+	{
+		this.areaObject = areaObject;
+		this.wires = wires;
 	}
 }
