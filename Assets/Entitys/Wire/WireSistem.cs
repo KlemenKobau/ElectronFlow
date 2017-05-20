@@ -42,6 +42,7 @@ public class WireSistem : MonoBehaviour {
 	}
 	public void startGame()
 	{
+		CanvasObj.canObj.gameObject.SetActive(false);
 		PomoznaKamera.pomozna.gameObject.SetActive(false);
 		StartCoroutine(startTheGame());
 	}

@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CanvasObj : MonoBehaviour {
-
+	public static CanvasObj canObj = null;
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		canObj = this;
 	}
 }
