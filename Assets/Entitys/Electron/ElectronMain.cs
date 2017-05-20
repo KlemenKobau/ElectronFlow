@@ -8,12 +8,13 @@ public class ElectronMain : MonoBehaviour {
 	private float speed = 2f;
 	private const float lambda = 0.01f;
 
-	private GameObject target;
+	private Area target;
 	private Vector2 targetPosition;
 
 	private void Start()
 	{
 		electron = this;
+		target = WireSistem.wireSistem.getTargetArea();
 	}
 
 	// Update is called once per frame
@@ -22,15 +23,33 @@ public class ElectronMain : MonoBehaviour {
 		gameObject.transform.position = Vector2.MoveTowards(electronPosition, targetPosition,speed*Time.deltaTime);
 		if(Vector2.Distance(electronPosition,targetPosition) < lambda)
 		{
-			target = WireSistem.wireSistem.getTarget();
-			targetPosition = target.transform.position;
+			if (target.lokacija != target.wires.Count)
+			{
+				target.lokacija++;
+				targetPosition = target.wires[target.lokacija].transform.position;
+			}
+			else if(target.lokacija == target.wires.Count)
+			{
+				target = WireSistem.wireSistem.getTargetArea();
+				targetPosition = target.wires[0].transform.position;
+			}
+			else
+			{
+				print("napaka v elektronu fixed update");
+			}
 		}
 	}
-	public void giveFirstTarget(GameObject target)
+	/*
+	public void giveFirstTarget(Area target)
 	{
 		this.target = target;
-		targetPosition = target.transform.position;
-		print(target);
+		targetPosition = target.wires[0].transform.position;
 	}
+	*/
+	public void giveArea(Area target)
+	{
+
+	}
+		
 }
  
