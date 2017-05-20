@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WireSistem : MonoBehaviour {
 	public static WireSistem wireSistem;
@@ -71,6 +72,10 @@ public class WireSistem : MonoBehaviour {
 		}
 		Instantiate(newArea,new Vector2(number*offset,0),new Quaternion(0,0,0,0));
 		number += 1;
+	}
+	public void end()
+	{
+		SceneManager.LoadScene(1);
 	}
 }
 
