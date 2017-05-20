@@ -5,9 +5,9 @@ using UnityEngine;
 public class ElectronMain : MonoBehaviour {
 	private Rigidbody2D electronRigidbody = null;
 	private Vector2 electronPosition;
-	private float speed = 3.5f;
-	//comment
-	private Vector2 target;
+	private float speed = 0.1f;
+
+	private Vector2 target = new Vector2(100,100);
 
 	// Use this for initialization
 	void Start () {
