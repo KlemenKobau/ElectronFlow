@@ -15,6 +15,7 @@ public class ElectronMain : MonoBehaviour {
 	{
 		electron = this;
 		target = WireSistem.wireSistem.getTargetArea();
+		targetPosition = target.wires[0].transform.position;
 	}
 
 	// Update is called once per frame
@@ -25,8 +26,8 @@ public class ElectronMain : MonoBehaviour {
 		{
 			if (target.lokacija != target.wires.Count)
 			{
-				target.lokacija++;
 				targetPosition = target.wires[target.lokacija].transform.position;
+				target.lokacija++;
 			}
 			else if(target.lokacija == target.wires.Count)
 			{
