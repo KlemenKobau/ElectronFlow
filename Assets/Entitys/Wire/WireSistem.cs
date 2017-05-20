@@ -9,11 +9,8 @@ public class WireSistem : MonoBehaviour {
 	private int numberOfAreaTypes = 1;
 	public GameObject Area1;
 	//public GameObject Area2;
-	
-	private int areaLimit = 5;
 
 	private const int offset = 10;
-	private Vector2 startingPosition = new Vector2(0, 0);
 
 	private int number = 0;
 	private static List<Area> areas = new List<Area>();
@@ -29,7 +26,7 @@ public class WireSistem : MonoBehaviour {
 	}
 	private void Start()
 	{
-		StartCoroutine(startTheGame());
+		//StartCoroutine(startTheGame());
 	}
 	public void addArea(Area that)
 	{
@@ -43,10 +40,16 @@ public class WireSistem : MonoBehaviour {
 		createRandom();
 		return target;
 	}
+	public void startGame()
+	{
+		PomoznaKamera.pomozna.gameObject.SetActive(false);
+		StartCoroutine(startTheGame());
+	}
 	IEnumerator startTheGame()
 	{
 		yield return null;
-		Instantiate(electron,areas[3].wires[0].transform.position, new Quaternion(0,0,0,0));
+		Instantiate(electron,SpawnPoint.point.transform.position, new Quaternion(0,0,0,0));
+
 	}
 	private void createRandom()
 	{
