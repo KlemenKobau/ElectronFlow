@@ -46,7 +46,7 @@ public class WireSistem : MonoBehaviour {
 	IEnumerator startTheGame()
 	{
 		yield return null;
-		Instantiate(electron,startingPosition, new Quaternion(0,0,0,0));
+		Instantiate(electron,areas[3].wires[0].transform.position, new Quaternion(0,0,0,0));
 	}
 	private void createRandom()
 	{
