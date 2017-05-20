@@ -5,7 +5,7 @@ using UnityEngine;
 public class ElectronMain : MonoBehaviour {
 	public static ElectronMain electron;
 	private Vector2 electronPosition;
-	private float speed = 2f;
+	private float speed = 4f;
 	private const float lambda = 0.01f;
 
 	private Area target;
