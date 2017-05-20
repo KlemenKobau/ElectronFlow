@@ -6,9 +6,9 @@ public class WireSistem : MonoBehaviour {
 	public static WireSistem wireSistem;
 	public GameObject electron;
 	//areas
-	private int numberOfAreaTypes = 2;
+	private int numberOfAreaTypes = 1;
 	public GameObject Area1;
-	public GameObject Area2;
+	//public GameObject Area2;
 	
 	private int areaLimit = 5;
 
@@ -59,7 +59,7 @@ public class WireSistem : MonoBehaviour {
 				newArea = Area1;
 				break;
 			case 2:
-				newArea = Area2;
+				//newArea = Area2;
 				break;
 			default:
 				print("napaka v switchu WireSistema");
