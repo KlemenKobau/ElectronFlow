@@ -6,7 +6,7 @@ public class GetAllWires : MonoBehaviour {
 	private List<GameObject> wires = new List<GameObject>();
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		setWires();
 	}
 	void setWires()
@@ -15,13 +15,10 @@ public class GetAllWires : MonoBehaviour {
 		{
 			wires.Add(child.gameObject);
 		}
+		WireSistem.wireSistem.addWires(wires);
 	}
 	public List<GameObject> getWires()
 	{
 		return wires;
-	}
-	private void giveWires()
-	{
-		WireSistem.wireSistem.addWires(wires);
 	}
 }

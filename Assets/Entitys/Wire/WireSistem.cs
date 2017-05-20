@@ -7,8 +7,12 @@ public class WireSistem : MonoBehaviour {
 	private static List<GameObject> wires = new List<GameObject>();
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		wireSistem = this;
+	}
+	private void Start()
+	{
+		StartCoroutine(giveFirstTarget());
 	}
 	public void addWires(List<GameObject> area)
 	{
@@ -16,5 +20,16 @@ public class WireSistem : MonoBehaviour {
 		{
 			wires.Add(wire);
 		}
+	}
+	public GameObject getTarget()
+	{
+		GameObject target = wires[0];
+		wires.RemoveAt(0);
+		return target;
+	}
+	IEnumerator giveFirstTarget()
+	{
+		yield return null;
+		ElectronMain.electron.giveFirstTarget(getTarget());
 	}
 }
