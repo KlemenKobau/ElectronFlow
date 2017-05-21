@@ -11,16 +11,18 @@ public class BcgAnimator : MonoBehaviour {
 
 	//private Color oldColor = new Vector4(0f, 105f/255f, 120f/255f, 1f);
 	private Vector2 offset;
+	private Vector2 lastPos;
 	private int selectedTex = 1;
 
 	// Use this for initialization
 	void Start () {
 		bcgMat.SetTexture ("_MainTex", textures [0]);
 		InvokeRepeating ("Transition", 1f, 10f);
+		lastPos = transform.position;
 	}
 
 	void Update(){
-		offset += new Vector2(-playerRoby.velocity.x * speed, -playerRoby.velocity.y*speed);
+		offset = new Vector2((lastPos.x-transform.position.x) * speed, (lastPos.y - transform.position.y)*speed);
 		bcgMat.SetTextureOffset("_MainTex", offset);
 	}
 
