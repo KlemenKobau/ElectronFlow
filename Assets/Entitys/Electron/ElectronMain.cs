@@ -22,15 +22,16 @@ public class ElectronMain : MonoBehaviour {
 		electron = this;
 		target = WireSistem.wireSistem.getTargetArea();
 		targetPosition = target.wires[0].transform.position;
+		StartCoroutine(getInvunerable(0));
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		speed += 0.05f * Time.deltaTime;
+		speed += 0.1f * Time.deltaTime;
 		cooldown /= (2 * Time.deltaTime);
 		if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space))
 		{
-			StartCoroutine(getInvunerable());
+			StartCoroutine(getInvunerable(cooldownTimer));
 		}
 		if(cooldownTimer > 0)
 		{
@@ -63,7 +64,7 @@ public class ElectronMain : MonoBehaviour {
 			WireSistem.wireSistem.end();
 		}
 	}
-	private IEnumerator getInvunerable()
+	private IEnumerator getInvunerable(float cooldown)
 	{
 		if(cooldownTimer <= 0)
 		{
