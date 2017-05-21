@@ -22,7 +22,7 @@ public class WireSistem : MonoBehaviour {
 	}
 	private void Start()
 	{
-		//StartCoroutine(startTheGame());
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	public void addArea(Area that)
 	{

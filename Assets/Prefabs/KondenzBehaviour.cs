@@ -31,7 +31,7 @@ public class KondenzBehaviour : MonoBehaviour {
 	}
 
 	IEnumerator KondenzJumping(){
-		while (rb.isKinematic = false) {
+		while (rb.isKinematic == false) {
 			if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)||Input.GetAxis("Fire1")>0f) {
 				rb.AddForce (new Vector2 (tapForce, 0f), ForceMode2D.Impulse);
 					yield return new WaitForSeconds (0.1f);

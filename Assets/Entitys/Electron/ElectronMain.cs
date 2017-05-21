@@ -27,7 +27,7 @@ public class ElectronMain : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		speed += 0.05f * Time.deltaTime;
-		cooldown /= 2;
+		cooldown /= (2 * Time.deltaTime);
 		if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space))
 		{
 			StartCoroutine(getInvunerable());
