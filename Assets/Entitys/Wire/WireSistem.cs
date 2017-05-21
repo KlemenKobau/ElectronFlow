@@ -19,15 +19,10 @@ public class WireSistem : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		wireSistem = this;
-		areas.Add(new Area(null, null));
-		areas.Add(new Area(null, null));
-		createRandom();
-		createRandom();
-		createRandom();
 	}
 	private void Start()
 	{
-		//StartCoroutine(startTheGame());
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 	public void addArea(Area that)
 	{
@@ -43,6 +38,11 @@ public class WireSistem : MonoBehaviour {
 	}
 	public void startGame()
 	{
+		areas.Add(new Area(null, null));
+		areas.Add(new Area(null, null));
+		createRandom();
+		createRandom();
+		createRandom();
 		CanvasObj.canObj.gameObject.SetActive(false);
 		PomoznaKamera.pomozna.gameObject.SetActive(false);
 		StartCoroutine(startTheGame());
@@ -75,6 +75,7 @@ public class WireSistem : MonoBehaviour {
 	}
 	public void end()
 	{
+		areas = new List<Area>();
 		SceneManager.LoadScene(1);
 	}
 }

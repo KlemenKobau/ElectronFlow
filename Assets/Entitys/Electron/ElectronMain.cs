@@ -10,6 +10,12 @@ public class ElectronMain : MonoBehaviour {
 
 	private Area target;
 	private Vector2 targetPosition;
+	private bool invunerable = false;
+	//invunerability
+	private const float timeOfInv = 1f;
+	private float cooldown = 0.5f;
+
+	private float cooldownTimer;
 
 	private void Start()
 	{
@@ -20,6 +26,16 @@ public class ElectronMain : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+		speed += 0.05f * Time.deltaTime;
+		cooldown /= (2 * Time.deltaTime);
+		if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space))
+		{
+			StartCoroutine(getInvunerable());
+		}
+		if(cooldownTimer > 0)
+		{
+			cooldownTimer -= Time.deltaTime;
+		}
 		electronPosition = gameObject.transform.position;
 		gameObject.transform.position = Vector2.MoveTowards(electronPosition, targetPosition,speed*Time.deltaTime);
 		if(Vector2.Distance(electronPosition,targetPosition) < lambda)
@@ -42,9 +58,23 @@ public class ElectronMain : MonoBehaviour {
 	}
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag.Equals("Empty Space"))
+		if (other.tag.Equals("Empty Space") && !invunerable)
 		{
 			WireSistem.wireSistem.end();
+		}
+	}
+	private IEnumerator getInvunerable()
+	{
+		if(cooldownTimer <= 0)
+		{
+			invunerable = true;
+			yield return new WaitForSeconds(timeOfInv);
+			invunerable = false;
+			cooldownTimer = cooldown;
+		}
+		else
+		{
+			yield return null;
 		}
 	}
 }
