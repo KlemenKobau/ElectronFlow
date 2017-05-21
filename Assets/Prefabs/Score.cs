@@ -8,6 +8,7 @@ public class Score : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = this;
+		setText (WireSistem.score);
 	}
 	public void setText(int score)
 	{

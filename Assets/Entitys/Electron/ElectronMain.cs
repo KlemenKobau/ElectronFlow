@@ -7,6 +7,8 @@ public class ElectronMain : MonoBehaviour {
 	private Vector2 electronPosition;
 	private float speed = 4f;
 	private const float lambda = 0.01f;
+	public Sprite normalno = null;
+	public Sprite modr = null;
 
 	private Area target;
 	private Vector2 targetPosition;
@@ -22,7 +24,7 @@ public class ElectronMain : MonoBehaviour {
 		electron = this;
 		target = WireSistem.wireSistem.getTargetArea();
 		targetPosition = target.wires[0].transform.position;
-		StartCoroutine(getInvunerable(0));
+		StartCoroutine(getInvunerableFirst(0));
 	}
 
 	// Update is called once per frame
@@ -65,6 +67,22 @@ public class ElectronMain : MonoBehaviour {
 		}
 	}
 	private IEnumerator getInvunerable(float cooldown)
+	{
+		if(cooldownTimer <= 0)
+		{
+			invunerable = true;
+			gameObject.transform.GetChild (0).gameObject.GetComponent<SpriteRenderer> ().sprite = modr;
+			yield return new WaitForSeconds(timeOfInv);
+			invunerable = false;
+			gameObject.transform.GetChild (0).gameObject.GetComponent<SpriteRenderer> ().sprite = normalno;
+			cooldownTimer = cooldown;
+		}
+		else
+		{
+			yield return null;
+		}
+	}
+	private IEnumerator getInvunerableFirst(float cooldown)
 	{
 		if(cooldownTimer <= 0)
 		{
