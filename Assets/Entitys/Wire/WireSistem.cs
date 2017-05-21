@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WireSistem : MonoBehaviour {
 	public static WireSistem wireSistem;
+	public static int score;
 	public GameObject electron;
 	//areas
 	private int numberOfAreaTypes = 2;
@@ -75,8 +77,10 @@ public class WireSistem : MonoBehaviour {
 	}
 	public void end()
 	{
+		score = (int)ElectronMain.electron.transform.position.x;
 		areas = new List<Area>();
 		SceneManager.LoadScene(1);
+		Score.score.setText(score);
 	}
 }
 

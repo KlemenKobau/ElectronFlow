@@ -7,9 +7,19 @@ public class AudioMaster : MonoBehaviour {
 	public AudioSource hit;
 	public AudioSource kaplja1;
 	public AudioSource kaplja2;
+	public AudioMaster audMast = null;
 	// Use this for initialization
 	void Start () {
-		PlayWhoLikesToParty ();
+		if (audMast == null)
+		{
+			DontDestroyOnLoad(gameObject);
+			audMast = this;
+		}
+		else if (audMast != this)
+		{
+			Destroy(gameObject);
+		}
+		PlayOST();
 	}
 
 	public void PlayWhoLikesToParty(){
