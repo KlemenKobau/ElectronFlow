@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WireSistem : MonoBehaviour {
 	public static WireSistem wireSistem;
+	public static int score;
 	public GameObject electron;
 	//areas
-	private int numberOfAreaTypes = 2;
+	private int numberOfAreaTypes = 4;
 	public GameObject Area1;
 	public GameObject Area2;
+	public GameObject Area3;
+	public GameObject Area4;
 
 	private const int offset = 10;
 
@@ -66,6 +70,12 @@ public class WireSistem : MonoBehaviour {
 			case 2:
 				newArea = Area2;
 				break;
+		case 3:
+			newArea = Area3;
+			break;
+		case 4:
+			newArea = Area4;
+			break;
 			default:
 				print("napaka v switchu WireSistema");
 				break;
@@ -75,6 +85,7 @@ public class WireSistem : MonoBehaviour {
 	}
 	public void end()
 	{
+		score = (int)ElectronMain.electron.transform.position.x;
 		areas = new List<Area>();
 		SceneManager.LoadScene(1);
 	}
